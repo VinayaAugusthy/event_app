@@ -42,6 +42,9 @@ class MyApp extends StatelessWidget {
               fontSize: 20,
             ),
           ),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: AppColors.red,
+          ),
         ),
         home: BaseView(),
       ),

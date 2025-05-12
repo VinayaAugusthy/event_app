@@ -33,7 +33,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
         await Future.delayed(Duration(milliseconds: 500));
       }
 
-      final refreshedSnapshot = await collection.get();
+      final refreshedSnapshot = await collection.orderBy('date').get();
       final events =
           refreshedSnapshot.docs
               .map((doc) => EventModel.fromDocument(doc))

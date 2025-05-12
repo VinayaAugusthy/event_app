@@ -14,7 +14,7 @@ class EventServices {
         "title": "Firebase Bootcamp",
         "description": "Bootcamp on different firebase features",
         "date": "2025-05-10T12:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 5,
       },
       {
@@ -24,7 +24,7 @@ class EventServices {
         "description":
             "A deep dive into Dart from basics to advanced - Talks lead by industrial experts",
         "date": "2025-05-10T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 3,
       },
       {
@@ -33,7 +33,7 @@ class EventServices {
         "title": "Flutter",
         "description": "Seminar on flutter and related technologies",
         "date": "2025-05-11T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 4,
       },
       {
@@ -42,16 +42,15 @@ class EventServices {
         "title": "Artificial Intelligence",
         "description": "Seminar on Artificial Intelligence and it's scope",
         "date": "2025-05-13T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 5,
       },
       {
         "id": "4",
-
         "title": "Machine Learning",
         "description": "Workshop on Machine Learning",
         "date": "2025-05-14T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 6,
       },
       {
@@ -60,7 +59,7 @@ class EventServices {
         "title": "Time Management",
         "description": "Seminar on Importance of Time Management",
         "date": "2025-06-01T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 7,
       },
       {
@@ -69,7 +68,7 @@ class EventServices {
         "title": "Flutter - New Trends",
         "description": "Descussion about new trending topics in Flutter",
         "date": "2025-06-15T14:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 3,
       },
       {
@@ -78,7 +77,7 @@ class EventServices {
         "title": "DevOps Workshop",
         "description": "Hands-on workshop on DevOps practices and CI/CD",
         "date": "2025-06-20T10:00:00Z",
-        "rsvpStatus": "No",
+        "rsvpStatus": "",
         "totalRsvpCount": 2,
       },
     ];
