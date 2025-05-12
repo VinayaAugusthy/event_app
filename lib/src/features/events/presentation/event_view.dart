@@ -1,4 +1,5 @@
 import 'package:event_app/src/core/constants/colors.dart';
+import 'package:event_app/src/core/constants/string_constants.dart';
 import 'package:event_app/src/core/extensions/date_time_extension.dart';
 import 'package:event_app/src/features/events/presentation/bloc/event_bloc.dart';
 import 'package:flutter/material.dart';
@@ -74,23 +75,23 @@ class _HomeViewState extends State<EventView> {
                               onPressed: () {
                                 BlocProvider.of<EventBloc>(
                                   context,
-                                ).add(UpdateRsvp(event, 'Yes'));
+                                ).add(UpdateRsvp(event, AppStrings.yes));
                               },
                               style: ButtonStyle(
                                 side: WidgetStatePropertyAll(
                                   BorderSide(color: AppColors.red),
                                 ),
                                 backgroundColor: WidgetStatePropertyAll(
-                                  event.rsvpStatus == 'Yes'
+                                  event.rsvpStatus == AppStrings.yes
                                       ? AppColors.red
                                       : Colors.transparent,
                                 ),
                               ),
                               child: Text(
-                                'Yes',
+                                AppStrings.yes,
                                 style: TextStyle(
                                   color:
-                                      event.rsvpStatus == 'Yes'
+                                      event.rsvpStatus == AppStrings.yes
                                           ? AppColors.white
                                           : AppColors.black,
                                 ),
@@ -101,23 +102,23 @@ class _HomeViewState extends State<EventView> {
                               onPressed: () {
                                 BlocProvider.of<EventBloc>(
                                   context,
-                                ).add(UpdateRsvp(event, 'No'));
+                                ).add(UpdateRsvp(event, AppStrings.no));
                               },
                               style: ButtonStyle(
                                 side: WidgetStatePropertyAll(
                                   BorderSide(color: AppColors.red),
                                 ),
                                 backgroundColor: WidgetStatePropertyAll(
-                                  event.rsvpStatus == 'No'
+                                  event.rsvpStatus == AppStrings.no
                                       ? AppColors.red
                                       : Colors.transparent,
                                 ),
                               ),
                               child: Text(
-                                'No',
+                                AppStrings.no,
                                 style: TextStyle(
                                   color:
-                                      event.rsvpStatus == 'No'
+                                      event.rsvpStatus == AppStrings.no
                                           ? AppColors.white
                                           : AppColors.black,
                                 ),
@@ -132,7 +133,7 @@ class _HomeViewState extends State<EventView> {
                                 fontSize: 18,
                               ),
                             ),
-                            Text(' attending'),
+                            Text(AppStrings.attending),
                           ],
                         ),
                       ],
@@ -146,7 +147,7 @@ class _HomeViewState extends State<EventView> {
                       Divider(height: 0, thickness: 1),
             );
           }
-          return Center(child: Text('No Events Found')); //fallback
+          return Center(child: Text(AppStrings.eventNotFound)); //fallback
         },
       ),
     );

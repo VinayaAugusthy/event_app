@@ -9,4 +9,8 @@ class AppStrings {
   static const emailRequired = 'Email is required';
   static const passwordRequired = 'Password is required';
   static const confirmPasswordRequired = 'Confirm password is required';
+  static const yes = 'Yes';
+  static const no = 'No';
+  static const attending = ' attending';
+  static const eventNotFound = 'No Events Found';
 }
