@@ -1,3 +1,5 @@
+import 'package:event_app/src/common/widgets/button_widget.dart';
+import 'package:event_app/src/common/widgets/textformfield_widget.dart';
 import 'package:event_app/src/core/constants/colors.dart';
 import 'package:event_app/src/core/constants/string_constants.dart';
 import 'package:event_app/src/core/extensions/mediaquery_extension.dart';
@@ -49,39 +51,17 @@ class _SignupViewState extends State<SignupView> {
                       ),
                     ),
                     SizedBox(height: context.screenHeight / 18),
-                    TextFormField(
+                    TextFormFieldWidget(
                       controller: emailController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        hintText: AppStrings.enterEmail,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.emailRequired;
-                        } else {
-                          return null;
-                        }
-                      },
+                      hintText: AppStrings.enterEmail,
+                      errorMsg: AppStrings.emailRequired,
                     ),
                     SizedBox(height: 30),
-
-                    TextFormField(
+                    TextFormFieldWidget(
                       controller: passwordController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        hintText: AppStrings.enterPassword,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.passwordRequired;
-                        } else {
-                          return null;
-                        }
-                      },
+                      hintText: AppStrings.enterPassword,
+                      errorMsg: AppStrings.passwordRequired,
+                      isObscure: true,
                     ),
                     SizedBox(height: 30),
                     TextFormField(
@@ -97,7 +77,7 @@ class _SignupViewState extends State<SignupView> {
                           return AppStrings.confirmPasswordRequired;
                         } else if (value.trim() !=
                             passwordController.text.trim()) {
-                          return 'Passwords do not match';
+                          return AppStrings.passwordsNotMatching;
                         } else {
                           return null;
                         }
@@ -106,7 +86,7 @@ class _SignupViewState extends State<SignupView> {
                     SizedBox(height: 30),
                     SizedBox(
                       width: context.screenWidth,
-                      child: ElevatedButton(
+                      child: ElevatedButtonWidget(
                         onPressed: () {
                           if (signUpFormKey.currentState?.validate() ?? false) {
                             BlocProvider.of<AuthBloc>(context).add(
@@ -118,14 +98,7 @@ class _SignupViewState extends State<SignupView> {
                             );
                           }
                         },
-                        child: Text(
-                          AppStrings.signUp,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.white,
-                          ),
-                        ),
+                        buttonText: AppStrings.signUp,
                       ),
                     ),
                     SizedBox(height: 30),

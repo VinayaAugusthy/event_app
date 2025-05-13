@@ -1,3 +1,5 @@
+import 'package:event_app/src/common/widgets/button_widget.dart';
+import 'package:event_app/src/common/widgets/textformfield_widget.dart';
 import 'package:event_app/src/core/constants/colors.dart';
 import 'package:event_app/src/core/constants/string_constants.dart';
 import 'package:event_app/src/core/extensions/mediaquery_extension.dart';
@@ -48,46 +50,25 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     SizedBox(height: context.screenHeight / 18),
-                    TextFormField(
+                    TextFormFieldWidget(
                       controller: emailController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        hintText: AppStrings.enterEmail,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.emailRequired;
-                        } else {
-                          return null;
-                        }
-                      },
+                      hintText: AppStrings.enterEmail,
+                      errorMsg: AppStrings.emailRequired,
                     ),
                     SizedBox(height: 30),
-
-                    TextFormField(
+                    TextFormFieldWidget(
                       controller: passwordController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        hintText: AppStrings.enterPassword,
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.passwordRequired;
-                        } else {
-                          return null;
-                        }
-                      },
+                      hintText: AppStrings.enterPassword,
+                      errorMsg: AppStrings.passwordRequired,
+                      isObscure: true,
                     ),
                     SizedBox(height: 30),
                     BlocBuilder<AuthBloc, AuthState>(
                       builder: (context, state) {
                         return SizedBox(
                           width: context.screenWidth,
-                          child: ElevatedButton(
+                          child: ElevatedButtonWidget(
+                            buttonText: AppStrings.login,
                             onPressed: () {
                               if (loginFormKey.currentState?.validate() ??
                                   false) {
@@ -100,14 +81,6 @@ class _LoginViewState extends State<LoginView> {
                                 );
                               }
                             },
-                            child: Text(
-                              AppStrings.login,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white,
-                              ),
-                            ),
                           ),
                         );
                       },
