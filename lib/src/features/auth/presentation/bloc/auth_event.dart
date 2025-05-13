@@ -28,4 +28,8 @@ class SignInUser extends AuthEvent {
   List<Object> get props => [email, password];
 }
 
-class SignOut extends AuthEvent {}
+class SignOut extends AuthEvent {
+  final BuildContext context;
+
+  const SignOut(this.context);
+}

@@ -31,6 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       emit(AuthLoadingState(isLoading: false));
     });
+
     on<SignInUser>((event, emit) async {
       emit(AuthLoadingState(isLoading: true));
       try {
@@ -40,6 +41,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           context: event.context,
         );
         if (user != null) {
+          await localService.saveUserLoggedIn();
+
           emit(AuthSuccessState(user));
         } else {
           emit(const AuthFailureState('create user failed'));
@@ -49,10 +52,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       emit(AuthLoadingState(isLoading: false));
     });
+
     on<SignOut>((event, emit) async {
       emit(AuthLoadingState(isLoading: true));
       try {
-        authService.signOutUser();
+        await authService.signOutUser(event.context);
         await localService.clearUserSession();
       } catch (e) {
         debugPrint('error');

@@ -1,6 +1,6 @@
-import 'package:event_app/src/features/auth/domain/local_services/local_service.dart';
 import 'package:event_app/src/features/events/presentation/event_view.dart';
 import 'package:event_app/src/features/auth/presentation/views/login_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class BaseView extends StatefulWidget {
@@ -18,11 +18,12 @@ class _BaseViewState extends State<BaseView> {
   }
 
   Future<void> _checkAuthState() async {
-    final isLogged = await LocalService().isUserLoggedIn();
+    final user = FirebaseAuth.instance.currentUser;
+
     // Optional: Add delay to show splash
     await Future.delayed(const Duration(seconds: 2));
 
-    if (isLogged) {
+    if (user != null) {
       // User is logged in
       if (mounted) {
         Navigator.pushReplacement(

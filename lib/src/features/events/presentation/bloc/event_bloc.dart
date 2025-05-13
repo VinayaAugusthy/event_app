@@ -18,6 +18,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     on<LoadEvents>(_onLoadEvents);
     on<UpdateRsvp>(_onUpdateRsvp);
   }
+
   Future<void> _onLoadEvents(event, emit) async {
     emit(EventLoading(isLoading: true));
 

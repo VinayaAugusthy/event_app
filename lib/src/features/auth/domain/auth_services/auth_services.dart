@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:event_app/src/core/utils/show_snackbar.dart';
 import 'package:event_app/src/features/auth/data/model/user_model.dart';
 import 'package:event_app/src/features/auth/presentation/views/base_view.dart';
+import 'package:event_app/src/features/auth/presentation/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,11 @@ class AuthService {
     BuildContext context,
   ) async {
     try {
+      final collection = FirebaseFirestore.instance.collection('events');
+      final snapshot = await collection.get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
       final UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(
             email: email.trim(),
@@ -46,7 +52,10 @@ class AuthService {
         return user;
       }
     } on FirebaseAuthException catch (e) {
+      showSnackbar(msg: e.toString(), ctx: context);
+
       print(e.toString());
+      rethrow;
     }
     return null;
   }
@@ -84,18 +93,33 @@ class AuthService {
         showSnackbar(msg: 'Invalid Password', ctx: context);
 
         res = "Wrong password";
+      } else {
+        showSnackbar(msg: err.toString(), ctx: context);
       }
     } catch (err) {
       print(err.toString());
+      showSnackbar(msg: err.toString(), ctx: context);
+      rethrow;
     }
 
     return null;
   }
 
-  Future<void> signOutUser() async {
-    final User? firebaseUser = FirebaseAuth.instance.currentUser;
-    if (firebaseUser != null) {
-      await FirebaseAuth.instance.signOut();
+  Future<void> signOutUser(BuildContext context) async {
+    try {
+      final User? firebaseUser = FirebaseAuth.instance.currentUser;
+      if (firebaseUser != null) {
+        await FirebaseAuth.instance.signOut();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => LoginView()),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      showSnackbar(msg: e.toString(), ctx: context);
+
+      rethrow;
     }
   }
 }

@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: BaseView(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:event_app/src/core/constants/colors.dart';
 import 'package:event_app/src/core/constants/string_constants.dart';
 import 'package:event_app/src/core/extensions/date_time_extension.dart';
+import 'package:event_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:event_app/src/features/events/presentation/bloc/event_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,20 @@ class _HomeViewState extends State<EventView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Events')),
+      appBar: AppBar(
+        title: Text('Events'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: IconButton(
+              onPressed: () {
+                BlocProvider.of<AuthBloc>(context).add(SignOut(context));
+              },
+              icon: Icon(Icons.logout),
+            ),
+          ),
+        ],
+      ),
       body: BlocBuilder<EventBloc, EventState>(
         builder: (context, state) {
           if (state is EventLoading) {
