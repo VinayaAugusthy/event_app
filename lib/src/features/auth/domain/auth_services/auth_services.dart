@@ -1,6 +1,7 @@
 // ignore_for_file: nullable_type_in_catch_clause, avoid_print, use_build_context_synchronously, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_app/src/core/utils/remove_reg_exp.dart';
 import 'package:event_app/src/core/utils/show_snackbar.dart';
 import 'package:event_app/src/features/auth/data/model/user_model.dart';
 import 'package:event_app/src/features/auth/presentation/views/base_view.dart';
@@ -52,7 +53,7 @@ class AuthService {
         return user;
       }
     } on FirebaseAuthException catch (e) {
-      showSnackbar(msg: e.toString(), ctx: context);
+      showSnackbar(msg: removeRegExp(e.toString()), ctx: context);
 
       print(e.toString());
       rethrow;
@@ -94,11 +95,11 @@ class AuthService {
 
         res = "Wrong password";
       } else {
-        showSnackbar(msg: err.toString(), ctx: context);
+        showSnackbar(msg: removeRegExp(err.toString()), ctx: context);
       }
     } catch (err) {
       print(err.toString());
-      showSnackbar(msg: err.toString(), ctx: context);
+      showSnackbar(msg: removeRegExp(err.toString()), ctx: context);
       rethrow;
     }
 
@@ -117,7 +118,7 @@ class AuthService {
         );
       }
     } catch (e) {
-      showSnackbar(msg: e.toString(), ctx: context);
+      showSnackbar(msg: removeRegExp(e.toString()), ctx: context);
 
       rethrow;
     }
